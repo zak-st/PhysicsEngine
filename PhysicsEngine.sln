@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsEngine", "PhysicsEngine.vcxproj", "{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}.Debug|x64.ActiveCfg = Debug|x64
+		{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}.Debug|x64.Build.0 = Debug|x64
+		{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}.Debug|x86.ActiveCfg = Debug|Win32
+		{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}.Debug|x86.Build.0 = Debug|Win32
+		{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}.Release|x64.ActiveCfg = Release|x64
+		{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}.Release|x64.Build.0 = Release|x64
+		{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}.Release|x86.ActiveCfg = Release|Win32
+		{E15CB5AC-7E52-4AB6-9AD3-032218D2337F}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6180A0F8-47F2-4746-9856-70467E467066}
+	EndGlobalSection
+EndGlobal
