@@ -10,7 +10,11 @@ public:
 	~PhysicsObject();
 
 	void ApplyForce(const Vector& force);
-	void Update(float dt);
+	void Update(float dt)
+	{
+		//temp implementation
+		return;
+	}
 
 private:
 	Vector position, velocity, acceleration;
