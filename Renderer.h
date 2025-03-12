@@ -15,5 +15,4 @@ public:
 
 private:
     Sprite* testSprite;
-    Shader* shader;
 };

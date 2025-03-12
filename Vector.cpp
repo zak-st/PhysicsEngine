@@ -1,11 +1,11 @@
 #include "Vector.h"
 #include <iostream>
 
-Vector::Vector() : x(0), y(0), z(1)
+Vector::Vector() : x(0), y(0), z(0)
 {
 
 }
-Vector::Vector(float x, float y) : x(x), y(y), z(1)
+Vector::Vector(float x, float y) : x(x), y(y), z(0)
 {
 
 }
@@ -32,4 +32,12 @@ Vector Vector::operator*(float scalar) const
 void Vector::Print() const
 {
 	std::cout << "(" << x << ", " << y << ", " << z << ")\n";
+}
+
+void Vector::Clear()
+{
+	x = 0;
+	y = 0;
+	z = 0;
+
 }

@@ -8,6 +8,7 @@
 #include "Engine.h"
 #include "Matrix.h"
 #include "Vector.h"
+#include "PhysicsObject.h"
 
 using namespace std;
 
@@ -34,6 +35,27 @@ void DebugMatrix() {
 
 }
 
+void TestPhysics() {
+    PhysicsObject testObject;
+    testObject.SetPosition(Vector(0, 0, 0));  // Start at (0,0)
+    testObject.SetVelocity(Vector(0, 0, 0));  // No initial movement
+    testObject.SetMass(1.0f);  // Normal mass
+
+    Vector gravity(0, -9.81f, 0);  // Simulate Earth gravity
+    float deltaTime = 0.016f;  // Simulate ~60 FPS (16ms per frame)
+
+    std::cout << "Initial Position: "; testObject.GetPosition().Print();
+
+    for (int i = 0; i < 10; i++) {  // Simulate 10 frames
+        testObject.ApplyForce(gravity * testObject.GetMass());  // Apply gravity
+        testObject.Update(deltaTime);  // Update motion
+
+        std::cout << "Frame " << i + 1 << " - Position: ";
+        testObject.GetPosition().Print();
+        std::cout << "Velocity: ";
+        testObject.GetVelocity().Print();
+    }
+}
 
 Engine::Engine() : running(true), fps(60), window(nullptr)
 {
@@ -55,7 +77,7 @@ void Engine::Run()
 
     std::chrono::milliseconds frameTime(1000 / fps);
 
-    DebugMatrix();
+    //TestPhysics();
 
     while (running && !glfwWindowShouldClose(window))
     {
