@@ -3,12 +3,14 @@
 #include <GLFW/glfw3.h>
 
 #include "Renderer.h"
+#include "GameObjectManager.h"
 
 class Engine
 {
 public:
 	Engine();
 	~Engine();
+	void Init();
 	void Run();
 	int GetFPS();
 	void SetFPS(int new_fps);
@@ -18,6 +20,7 @@ private:
 
 	GLFWwindow* window;
 	Renderer renderer;
+	GameObjectManager global_manager;
 
 	void InitOpenGL();
 	void Update();

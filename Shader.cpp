@@ -11,15 +11,15 @@ Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) {
     std::string vertexSource = LoadShaderSource(vertexPath);
     std::string fragmentSource = LoadShaderSource(fragmentPath);
 
-    std::cout << "Vertex Shader Source:\n" << vertexSource << std::endl;
-    std::cout << "Fragment Shader Source:\n" << fragmentSource << std::endl;
+    //std::cout << "Vertex Shader Source:\n" << vertexSource << std::endl;
+    //std::cout << "Fragment Shader Source:\n" << fragmentSource << std::endl;
 
 
     GLuint vertexShader = CompileShader(vertexSource, GL_VERTEX_SHADER);
     GLuint fragmentShader = CompileShader(fragmentSource, GL_FRAGMENT_SHADER);
 
     shaderID = glCreateProgram();
-    std::cout << "Shader Program ID: " << shaderID << std::endl;
+    //std::cout << "Shader Program ID: " << shaderID << std::endl;
     glAttachShader(shaderID, vertexShader);
     glAttachShader(shaderID, fragmentShader);
     glLinkProgram(shaderID);
@@ -88,7 +88,7 @@ GLuint Shader::CompileShader(const std::string& source, GLenum type) {
         std::cerr << "ERROR::SHADER::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
     else {
-        std::cout << "Shader compiled successfully: " << type << std::endl;
+        //std::cout << "Shader compiled successfully: " << type << std::endl;
     }
 
     return shader;

@@ -3,12 +3,13 @@
 
 #include "PhysicsObject.h"
 #include "Sprite.h"
+#include "Shader.h"
 
 class GameObject
 {
 public:
 	GameObject();
-	GameObject(float s_width, float s_height);
+	GameObject(float s_width, float s_height, Shader& shader);
 	~GameObject();
 
 	void Update(float dt);
@@ -20,4 +21,5 @@ public:
 private:
 	PhysicsObject* physics;
 	Sprite* sprite;
+	glm::vec2 position;
 };

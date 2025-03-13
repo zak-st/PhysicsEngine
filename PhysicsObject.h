@@ -29,6 +29,4 @@ private:
 	Vector velocity;
 	Vector acceleration;
 	float mass;
-
-	Sprite* sprite;
 };

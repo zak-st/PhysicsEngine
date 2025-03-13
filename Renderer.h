@@ -13,6 +13,8 @@ public:
     void Init();
     void Render();
 
+    Shader* GetShader();
+
 private:
-    Sprite* testSprite;
+    Shader* shader;
 };

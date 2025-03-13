@@ -9,6 +9,7 @@
 #include "Matrix.h"
 #include "Vector.h"
 #include "PhysicsObject.h"
+#include "InputManager.h"
 
 using namespace std;
 
@@ -66,9 +67,28 @@ Engine::~Engine()
     glfwDestroyWindow(window);
     glfwTerminate();
 }
+void Engine::Init()
+{
+    std::cout << "Initializing Game Objects..." << std::endl;
+
+    InputManager::Init(window);
+    Shader* engineShader = renderer.GetShader();
+    if (!engineShader) {
+        std::cerr << "ERROR: Renderer has no shader!" << std::endl;
+        return;
+    }
+    GameObject* fallingObject = new GameObject(0.5f, 0.5f, *engineShader);
+    fallingObject->GetPhysics()->ApplyForce(Vector(0.0f, -9.8f));
+
+    global_manager.AddObject(fallingObject);
+
+    std::cout << "Game Objects Initialized!" << std::endl;
+}
 void Engine::Run()
 {
+
     InitOpenGL();
+    Init();
     if (!running)
     {
         return;
@@ -95,10 +115,15 @@ void Engine::Run()
 }
 void Engine::Update()
 {
-	//cout << "Engine Updating" << endl;
+    float deltaTime = 0.016f; // Simulated dt
+    global_manager.Update(deltaTime);
+    InputManager::Update();
+    std::cout << "Engine Updating..." << std::endl;
 }
 void Engine::Render()
 {
+    glClear(GL_COLOR_BUFFER_BIT);
+    global_manager.DrawObjects();
 	//cout << "Engine Rendering" << endl;
     renderer.Render();
 }

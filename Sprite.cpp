@@ -3,7 +3,7 @@
 #include "Sprite.h"
 
 
-Sprite::Sprite(float width, float height) : width(width), height(height), posX(0.0f), posY(0.0f)
+Sprite::Sprite(float width, float height) : width(width), height(height)
 {
     default_shader = new Shader("defaultVertex.glsl", "defaultFragment.glsl");
     shader = default_shader;
@@ -11,7 +11,7 @@ Sprite::Sprite(float width, float height) : width(width), height(height), posX(0
     Init();
 }
 
-Sprite::Sprite(float width, float height, Shader& shader) : width(width), height(height), shader(&shader), posX(0.0f), posY(0.0f)
+Sprite::Sprite(float width, float height, Shader& shader) : width(width), height(height), shader(&shader)
 {
 	Init();
 }
@@ -67,27 +67,13 @@ void Sprite::Render() {
         return;
     }
 
-    shader->Use();
-
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(posX, posY, 0.0f));
-
-    glm::mat4 projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
-    shader->SetMatrix4("model", model);
-    shader->SetMatrix4("projection", projection);
-
-    shader->SetVector4f("spriteColor", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-
-
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
-
-    //std::cout << "Rendering sprite at: " << posX << ", " << posY << std::endl;
 }
 
-void Sprite::SetPosition(float x, float y)
+Shader* Sprite::GetShader()
 {
-    posX = x;
-    posY = y;
+    return shader;
 }
+

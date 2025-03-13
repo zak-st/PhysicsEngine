@@ -8,27 +8,30 @@ Renderer::Renderer()
 
 Renderer::~Renderer()
 {
-    delete testSprite;
+    delete shader;
 }
 
 void Renderer::Init() {
     glViewport(0, 0, 800, 600);
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-
-    testSprite = new Sprite(0.4f, 0.8f); 
+    shader = new Shader("defaultVertex.glsl", "defaultFragment.glsl");
+    //testSprite = new Sprite(0.4f, 0.8f); 
 }
 
 
 void Renderer::Render() 
 {
-    glClear(GL_COLOR_BUFFER_BIT);
+    shader = new Shader("defaultVertex.glsl", "defaultFragment.glsl");
 
-    //std::cout << "Rendering frame..." << std::endl;
-
-    if (!testSprite) {
-        std::cerr << "ERROR: testSprite is nullptr!" << std::endl;
+    if (!shader) {
+        std::cerr << "ERROR: Shader failed to initialize in Renderer!" << std::endl;
         return;
     }
 
-    testSprite->Render();
+    //std::cout << "Renderer Initialized with Shader!" << std::endl;
+}
+
+Shader* Renderer::GetShader()
+{
+    return shader;
 }

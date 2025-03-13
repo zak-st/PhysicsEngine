@@ -1,8 +1,9 @@
 #include "PhysicsObject.h"
+#include <iostream>
 
 PhysicsObject::PhysicsObject()
 {
-
+    mass = 1.0f;
 }
 PhysicsObject::~PhysicsObject()
 {
@@ -15,9 +16,8 @@ void PhysicsObject::ApplyForce(const Vector& force)
     {
         return;
     }
-    acceleration.x += force.x / mass;
-    acceleration.y += force.y / mass;
-    acceleration.z += force.z / mass;
+    Vector new_acceleration(force.x / mass, force.y / mass, force.z / mass);
+    acceleration = acceleration + new_acceleration;
 }
 void PhysicsObject::Update(float dt)
 {
@@ -30,6 +30,9 @@ void PhysicsObject::Update(float dt)
     position = position + (velocity * dt);
 
     acceleration.Clear();
+
+    std::cout << "Physics Position: (" << position.x << ", " << position.y
+        << ") Velocity: (" << velocity.x << ", " << velocity.y << ")" << std::endl;
 }
 
 Vector PhysicsObject::GetPosition() const 
