@@ -12,11 +12,16 @@ public:
 	GameObject(float s_width, float s_height, Shader& shader);
 	~GameObject();
 
-	void Update(float dt);
+	virtual void Update(float dt);
 	void Draw();
 
 	PhysicsObject* GetPhysics();
 	Sprite* GetSprite();
+	glm::vec2 GetPosition();
+
+	void SetPhysics(PhysicsObject* other);
+	void SetSprite(Sprite* other);
+	void SetPosition(glm::vec2& other);
 
 private:
 	PhysicsObject* physics;

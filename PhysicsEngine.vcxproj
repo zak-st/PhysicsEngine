@@ -140,6 +140,7 @@
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PhysicsObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Sprite.h" />

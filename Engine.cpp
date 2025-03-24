@@ -10,6 +10,7 @@
 #include "Vector.h"
 #include "PhysicsObject.h"
 #include "InputManager.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -77,10 +78,10 @@ void Engine::Init()
         std::cerr << "ERROR: Renderer has no shader!" << std::endl;
         return;
     }
-    GameObject* fallingObject = new GameObject(0.5f, 0.5f, *engineShader);
-    fallingObject->GetPhysics()->ApplyForce(Vector(0.0f, -9.8f));
+    Player* testPlayer = new Player(0.5f, 0.5f, *engineShader);
+    testPlayer->GetPhysics()->ApplyForce(Vector(0.0f, -9.8f));
 
-    global_manager.AddObject(fallingObject);
+    global_manager.AddObject(testPlayer);
 
     std::cout << "Game Objects Initialized!" << std::endl;
 }
@@ -135,7 +136,8 @@ void Engine::InitOpenGL() {
         return;
     }
 
-    window = glfwCreateWindow(800, 600, "OpenGL Engine", nullptr, nullptr);
+    //window resizing (change render viewport in Renderer::Init)
+    window = glfwCreateWindow(1600, 1600, "OpenGL Engine", nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window" << std::endl;
         glfwTerminate();

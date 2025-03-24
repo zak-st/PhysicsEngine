@@ -12,7 +12,8 @@ Renderer::~Renderer()
 }
 
 void Renderer::Init() {
-    glViewport(0, 0, 800, 600);
+    //resize rendering viewport
+    glViewport(0, 0, 1600, 1600);
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     shader = new Shader("defaultVertex.glsl", "defaultFragment.glsl");
     //testSprite = new Sprite(0.4f, 0.8f); 

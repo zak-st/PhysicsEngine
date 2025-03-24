@@ -28,18 +28,9 @@ void GameObject::Update(float dt)
 {
 	physics->Update(dt);
 
-	//remove for override player class soon
-	if (InputManager::IsKeyPressed(GLFW_KEY_A)) {
-		physics->ApplyForce(Vector(-5.0f, 0.0f));
-	}
-	if (InputManager::IsKeyPressed(GLFW_KEY_D)) {
-		physics->ApplyForce(Vector(5.0f, 0.0f));
-	}
-
 	position.x = physics->GetPosition().x;
 	position.y = physics->GetPosition().y;
 
-	std::cout << "GameObject Position: (" << position.x << ", " << position.y << ")" << std::endl;
 }
 void GameObject::Draw()
 {
@@ -64,4 +55,21 @@ PhysicsObject* GameObject::GetPhysics()
 Sprite* GameObject::GetSprite()
 {
 	return sprite;
+}
+glm::vec2 GameObject::GetPosition()
+{
+	return position;
+}
+
+void GameObject::SetPhysics(PhysicsObject* other)
+{
+	physics = other;
+}
+void GameObject::SetSprite(Sprite* other)
+{
+	sprite = other;
+}
+void GameObject::SetPosition(glm::vec2& other)
+{
+	position = other;
 }
