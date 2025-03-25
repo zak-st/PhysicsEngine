@@ -9,11 +9,15 @@ GameObject::GameObject()
 	sprite = nullptr;
 }
 
-GameObject::GameObject(float s_width, float s_height, Shader& shader)
+GameObject::GameObject(float s_width, float s_height, Shader& shader, bool has_collider, const string& name) : name(name)
 {
 	physics = new PhysicsObject();
 	sprite = new Sprite(s_width, s_height, shader);
 	position = glm::vec2(0.0f, 0.0f);
+	if (has_collider)
+	{
+		collider = new Collider(s_width, s_height);
+	}
 }
 GameObject::~GameObject()
 {
@@ -28,8 +32,11 @@ void GameObject::Update(float dt)
 {
 	physics->Update(dt);
 
-	position.x = physics->GetPosition().x;
-	position.y = physics->GetPosition().y;
+	position = glm::vec2(physics->GetPosition().x, physics->GetPosition().y);
+	if (collider)
+	{
+		collider->Update(position);
+	}
 
 }
 void GameObject::Draw()
@@ -61,6 +68,11 @@ glm::vec2 GameObject::GetPosition()
 	return position;
 }
 
+Collider* GameObject::GetCollider()
+{
+	return collider;
+}
+
 void GameObject::SetPhysics(PhysicsObject* other)
 {
 	physics = other;
@@ -72,4 +84,9 @@ void GameObject::SetSprite(Sprite* other)
 void GameObject::SetPosition(glm::vec2& other)
 {
 	position = other;
+}
+
+void GameObject::SetCollider(Collider* other)
+{
+	collider = other;
 }

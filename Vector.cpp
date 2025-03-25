@@ -29,6 +29,11 @@ Vector Vector::operator*(float scalar) const
 {
 	return Vector(x * scalar, y * scalar);
 }
+
+glm::vec2 Vector::ToGLM() const
+{
+	return glm::vec2(x, y);
+}
 void Vector::Print() const
 {
 	std::cout << "(" << x << ", " << y << ", " << z << ")\n";

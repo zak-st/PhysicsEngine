@@ -13,10 +13,12 @@ public:
 	GameObjectManager();
 	~GameObjectManager();
 
+	const vector<GameObject*>& GetObjects() const { return object_list; };
+
 	void AddObject(GameObject* new_object);
 	void Update(float dt);
-	void DrawObjects();
-
+	void DrawObjects(Shader& debugShader);
+	bool CheckCollision(GameObject* obj1, GameObject* obj2);
 
 private:
 	vector<GameObject*> object_list;

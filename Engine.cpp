@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void DebugMatrix() {
+/*void DebugMatrix() {
     // Create an identity matrix
     Matrix mat;
     std::cout << "Initial Identity Matrix:\n";
@@ -57,7 +57,7 @@ void TestPhysics() {
         std::cout << "Velocity: ";
         testObject.GetVelocity().Print();
     }
-}
+}*/
 
 Engine::Engine() : running(true), fps(60), window(nullptr)
 {
@@ -78,10 +78,16 @@ void Engine::Init()
         std::cerr << "ERROR: Renderer has no shader!" << std::endl;
         return;
     }
-    Player* testPlayer = new Player(0.5f, 0.5f, *engineShader);
+    Player* testPlayer = new Player(0.5f, 0.5f, *engineShader, true, "Player");
     testPlayer->GetPhysics()->ApplyForce(Vector(0.0f, -9.8f));
 
     global_manager.AddObject(testPlayer);
+
+	GameObject* floor = new GameObject(10.0f, 0.5f, *engineShader, true, "Floor");
+	floor->GetPhysics()->SetPosition(Vector(0.0f, -1.0f));
+
+	global_manager.AddObject(floor);
+
 
     std::cout << "Game Objects Initialized!" << std::endl;
 }
@@ -119,14 +125,20 @@ void Engine::Update()
     float deltaTime = 0.016f; // Simulated dt
     global_manager.Update(deltaTime);
     InputManager::Update();
-    std::cout << "Engine Updating..." << std::endl;
+
+
+    if (InputManager::IsKeyPressed(GLFW_KEY_TAB)) {
+        renderer.SetDebugDraw(!renderer.GetDebugDraw());
+    }
+    //std::cout << "Engine Updating..." << std::endl;
 }
 void Engine::Render()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    global_manager.DrawObjects();
+    global_manager.DrawObjects(*renderer.GetDebugShader());
 	//cout << "Engine Rendering" << endl;
     renderer.Render();
+	renderer.DebugDraw(global_manager);
 }
 
 void Engine::InitOpenGL() {

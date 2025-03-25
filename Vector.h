@@ -1,4 +1,5 @@
 #pragma once
+#include "Shader.h"
 class Vector
 {
 public:
@@ -11,6 +12,7 @@ public:
 	Vector operator+(const Vector& other) const;
 	Vector operator-(const Vector& other) const;
 	Vector operator*(float scalar) const;
+	glm::vec2 ToGLM() const;
 	void Print() const;
 	void Clear();
 };

@@ -31,8 +31,8 @@ void PhysicsObject::Update(float dt)
 
     acceleration.Clear();
 
-    std::cout << "Physics Position: (" << position.x << ", " << position.y
-        << ") Velocity: (" << velocity.x << ", " << velocity.y << ")" << std::endl;
+    /*std::cout << "Physics Position: (" << position.x << ", " << position.y
+        << ") Velocity: (" << velocity.x << ", " << velocity.y << ")" << std::endl;*/
 }
 
 Vector PhysicsObject::GetPosition() const 
