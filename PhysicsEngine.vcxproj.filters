@@ -121,5 +121,6 @@
     <None Include="debugFragment.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="vcpkg.json" />
   </ItemGroup>
 </Project>
